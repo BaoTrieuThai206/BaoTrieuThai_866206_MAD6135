@@ -185,11 +185,6 @@ function checkInput(e) {
         }
 
         scoreText.content = "Score: " + score; 
-
-        console.log("correctNeedToNextLevel: " + correctNeedToNextLevel);
-        console.log("currentLevel: " + currentLevel);
-        console.log("currentLevel: " + currentLevel);
-        console.log("dropSpeed: " + dropSpeed);
     }
 }
 
@@ -262,6 +257,20 @@ function gameOver() {
         justification: 'center'
     });
 
+    
+
+    if (isTopScore(score)) {
+        const congratulationsText = new paper.PointText({
+            point: new paper.Point(centerX, centerY + 50),
+            content: "Congratulations! You've set a new high score!",
+            fillColor: 'white',
+            fontSize: 18,
+            justification: 'center'
+        });
+
+        saveTopScore(score);
+    }
+
 }
 
 function showTopScores() {
@@ -273,11 +282,15 @@ function showTopScores() {
         }
     } else {
         for (let i = 0; i < 5; i++) {
-            topScoresText.content += `${i + 1}. ${topScores[i] ? topScores[i] : '...'}\n`;
+            topScoresText.content += `${i + 1}. ${topScores[i] || topScores[i] === 0 ? topScores[i] : '...'}\n`;
         }
     }
 }
 
+function isTopScore(score) {
+    const topScores = JSON.parse(localStorage.getItem("finalScores")) || [];
+    return topScores.length < 5 || score > topScores[topScores.length - 1];
+}
 
 function startGame() {
     if (!isGameOver) {
