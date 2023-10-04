@@ -4,23 +4,23 @@ const canvasWidth = 600;
 const canvasHeight = 800;
 
 const levelText = new paper.PointText({
+    point: new paper.Point(canvasWidth - 10, canvasHeight - 10),
+    fillColor: 'black',
+    fontSize: 20,
+    justification: 'right'
+});
+levelText.content = "Level 1";
+
+const livesText = new paper.PointText({
     point: new paper.Point(10, 30),
     fillColor: 'black',
     fontSize: 20,
     justification: 'left'
 });
-levelText.content = "Level 1";
-
-const livesText = new paper.PointText({
-    point: new paper.Point(canvasWidth - 10, 30),
-    fillColor: 'black',
-    fontSize: 20,
-    justification: 'right'
-});
 livesText.content = "Lives: 3";
 
 const scoreText = new paper.PointText({
-    point: new paper.Point(canvasWidth - 10, 50),
+    point: new paper.Point(canvasWidth - 10, 30),
     fillColor: 'black',
     fontSize: 20,
     justification: 'right'
