@@ -257,19 +257,45 @@ function gameOver() {
         justification: 'center'
     });
 
-    
+    const congratulationsText = new paper.PointText({
+        point: new paper.Point(centerX, centerY + 50),
+        content: "Congratulations! You've set a new high score!",
+        fillColor: 'white',
+        fontSize: 18,
+        justification: 'center',
+        visible: false, 
+    });
 
-    if (isTopScore(score)) {
-        const congratulationsText = new paper.PointText({
-            point: new paper.Point(centerX, centerY + 50),
-            content: "Congratulations! You've set a new high score!",
-            fillColor: 'white',
-            fontSize: 18,
-            justification: 'center'
-        });
+    isTopScore(score) ? congratulationsText.visible = true : '';
 
-        saveTopScore(score);
-    }
+    const startAgainButton = new paper.Path.Rectangle({
+        point: new paper.Point(centerX - 50, centerY + 75),
+        size: new paper.Size(100, 40),
+        fillColor: 'navy',
+        radius: 5,
+    });
+
+    const startAgainText = new paper.PointText({
+        point: new paper.Point(centerX, centerY + 100),
+        content: "Play Again",
+        fillColor: 'white',
+        fontSize: 18,
+        justification: 'center'
+    });
+
+    startAgainButton.onClick = function (event) {
+        isGameOver = false;
+        livesText.content = "Lives: 3"; 
+        scoreText.content = "Score: 0"; 
+        levelText.content = "Level: 1"; 
+        startGame();
+        square.remove();
+        gameOverText.remove();
+        finalScoreText.remove();
+        congratulationsText.visible = false;
+        startAgainButton.remove();
+        startAgainText.remove();
+    };
 
 }
 
@@ -296,6 +322,16 @@ function startGame() {
     if (!isGameOver) {
         wordsArray = wordsLevel1;
         dropSpeed = 1;
+
+        currentLevel = 1;
+        score = 0;
+        lives = 3;
+        previousWord = null;
+        isDroppingWord = false;
+        correctCounting = 0;
+        correctNeedToNextLevel = 2;
+        randomWord = '';
+
         dropNextWord();
     }
 }
