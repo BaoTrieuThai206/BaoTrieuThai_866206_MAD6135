@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #333;
+}
+
+#marks-table {
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: white;
+    border: 1px solid #333;
+    box-shadow: 0 0 10px #4b55d1;
+}
+
+#marks-table th, #marks-table td {
+    border: 1px solid #333;
+    padding: 10px;
+}
+
+#marks-table th {
+    background-color: #333;
+    color: white;
+}
+
+#marks-table tbody tr:nth-child(even) {
+    background-color: #eac0c0;
+}
+
+#marks-table tbody tr:hover {
+    background-color: #ddd;
+}
+.average-row {
+    background-color: #c46b6b !important;
+    color: white;
+    font-weight: bold;
+}
